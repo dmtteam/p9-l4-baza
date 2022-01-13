@@ -2,124 +2,101 @@ import sys
 
 imie = ""
 nazwisko = ""
-# jak zapisac ponizej ????
-imie_nazwisko = [imie, nazwisko]
-
-uczen = ()              # jest w 1 klasie
-nauczyciel = []         # ma przypisany 1 przedmiot i wiele klas
-wychowawca = ()         # ma przypisane wiele klas
 klasa = ""
-a=True
+typy = ["uczen", "nauczyciel", "wychowawca", "koniec"]
 
-typ = ["uczen", "nauczyciel", "wychowawca", "koniec"]
 
-"""
-Class uczeniowe():
-Class nauczuciele():
-Class wychowawcy():
-"""
+class Uczen:
+    def __init__(self):
+        self.nazwa=""
+        self.klasa=""
 
-#def start():
-# czy mozna tu tez zdefiniować IF i wkleic w while?
+    def pobierz(self):
+        self.nazwa = input("Imie nazwisko: ")
+        self.klasa = input("Klasa: ")
 
-def rodo():
-    imie = input('Imie: ')
-    nazwisko = input('Nazwisko: ')
-# imie_nazwisko = [imie, nazwisko] ?
-    return imie, nazwisko
-# czy bez return mozliwe?
+#    def show(self):
+#        return "Uczen {} jest w klasie {}".format(self.nazwa, self.klasa)
 
-def kl():
-    klasa = input('Podaj nr klasy:')
-    return klasa
+# jeśli phrase to uczeń: wypisz wszystkie lekcje, które ma uczeń i nauczycieli, którzy je prowadzą
+
+
+class Nauczyciel:
+    def __init__(self):
+        self.nazwa=""
+        self.przedmiot=""
+        self.klasy=[]
+
+    def pobierz(self):
+        self.nazwa = input("Imie nazwisko: ")
+        self.przedmiot = input("Przedmiot: ")
+        while True:
+            klasa = input("Klasa: ")
+            if not klasa:
+                break
+            self.klasy.append(klasa)
+
+#    def show(self):
+#    return "Nauczyciel {} uczy przedmiotu {} w klasach {}".format(self.nazwa,self.przedmiot, self.klasy)
+
+# jeśli phrase to nauczyciel: wypisz wychowawców wszystkich klas, z którym ma zajęcia nauczyciel
+
+
+class Wychowawca:
+    def __init__(self):
+        self.nazwa=""
+        self.klasy=[]
+
+    def pobierz(self):
+        self.nazwa = input("Imie nazwisko: ")
+        while True:
+            klasa = input("Klasa: ")
+            if not klasa:
+                break
+            self.klasy.append(klasa)
+
+#    def show(self):
+#    return "Wychowawca {} ma klasy {}".format(self.nazwa, self.klasy)
+
+#    jeśli phrase to wychowawca: wypisz wszystkich uczniów, których prowadzi wychowawca
+
+
+class Klasasys:
+    def __init__(self):
+        self.numer=""
+
+    def numerklasy(self):
+        self.numer = True
+
+# jeśli phrase to nazwa klasy: program wypisze wychowawcę i uczniów w klasie
+
 
 while True:
-# def start()
-    print(f'typy: {typ}')
-    wybor = input('Jaki typ? ')
-    if wybor not in typ:
+    typ = input("Podaj typ: ")
+    if typ not in typy:
         print("Zły wybor. Jeszcze raz!")
         continue
-    if wybor == "koniec":
+    elif typ == "uczen":
+        osoba = Uczen()
+    elif typ == "nauczyciel":
+        osoba = Nauczyciel()
+    elif typ == "wychowawca":
+        osoba = Wychowawca()
+    elif typ == "koniec":
         break
 
+    osoba.pobierz()
+    print(osoba.__dict__)
 
-    if wybor == "uczen":
-        rodo()
-        kl()
-# tu slownik (uczen, imie, nazwisko, nr klasy) ?
-
-        baza_uczen = (imie, nazwisko, klasa)
-
-        print(baza_uczen)
-        print('uczen END')
-        continue
+    continue
 
 
-    if wybor == "nauczyciel":
 
-        rodo()
+if sys.argv[1] in typy:
+    os = typ[sys.argv[1]]
 
+    #for o in os:
+        # o.show()
+        # print(osoba.__dict__)
+        # print(osoba)
 
-        przedmiot = str(input("Jaki przedmiot? "))
-# czy potrzebna petla w petli?
-        a = 'stop'
-        while a == 'stop':
-            kl()
-            if not kl():
-                break
-            else:
-                continue
-        # tu stworzyc slownik (nauczyciel, imie, nazwisko, przedmiot, nr klasy1, nr klasy2)
-        print('nauczyciel end')
-
-    if wybor == "wychowawca":
-        rodo()
-
-        a = 'stop'
-        while a == 'stop':
-            kl()
-            if not kl():
-                break
-            else:
-                continue
-
-        # tu stworzyc słownik (wychowawca, imie, nazwisko, nr klasy1, nr klasy2)
-        print('wychowawca END')
-
-# argv start here
-wybor = sys.argv[1]
-
-# argv uczen
-
-if wybor == "uczen":
-    imie = str(sys.argv[2])
-    nazwisko = str(sys.argv[3])
-    klasa = str(sys.argv[4])
-
-    print(f"Uczen z argv wprowadzono: {imie}, {nazwisko}, klasa: {klasa}")
-
-# argv nauczyciel
-
-if wybor == "nauczyciel":
-    imie = str(sys.argv[2])
-    nazwisko = str(sys.argv[3])
-    przedmiot = str(sys.argv[4])
-# moze byc w wielu klasach
-    klasa = str(sys.argv[5])
-
-    print(f"Nauczciel z argv wprowadzono:\n {imie}, \n{nazwisko},\n{przedmiot} \nklasy: {klasa}")
-
-
-# argv wychowawca
-
-if wybor == "wychowawca":
-    imie = str(sys.argv[2])
-    nazwisko = str(sys.argv[3])
-# moze byc w wielu klasach
-# jak w argv zrobic ?
-#   for in
-    klasa = str(sys.argv[4])
-#   ktore_klasy= (klasa + )
-
-    print(f"Nauczciel z argv wprowadzono:\n {imie},\n {nazwisko},\n {klasa}")
