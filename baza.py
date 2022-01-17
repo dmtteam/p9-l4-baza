@@ -1,9 +1,27 @@
 import sys
-
+# uwaga w in.txt wychowaca i uczen tak samo sie nazywaja
 imie = ""
 nazwisko = ""
 klasa = ""
 typy = ["uczen", "nauczyciel", "wychowawca", "koniec"]
+grupy = {}
+
+class Grupa:
+    def __init__(self, numer):
+        self.numer = numer
+        self.wychowawca = None
+        self.nauczyciele = []
+        self.uczniowie = []
+        self.przedmioty = []    # nowe
+
+    def numerklasy(self):
+        self.numer = True
+
+def pobierz_grupe(numer):
+    if numer not in grupy:
+        grupa = Grupa(numer)
+        grupy[numer] = grupa
+    return grupy[numer]
 
 
 class Uczen:
@@ -14,6 +32,10 @@ class Uczen:
     def pobierz(self):
         self.nazwa = input("Imie nazwisko: ")
         self.klasa = input("Klasa: ")
+        grupa=pobierz_grupe(self.klasa)
+        grupa.uczniowie.append(self)
+
+
 
 #    def show(self):
 #        return "Uczen {} jest w klasie {}".format(self.nazwa, self.klasa)
@@ -30,11 +52,18 @@ class Nauczyciel:
     def pobierz(self):
         self.nazwa = input("Imie nazwisko: ")
         self.przedmiot = input("Przedmiot: ")
+# self.przedmiot.append(klasa)    # nowe - czy potrzebne
+
         while True:
             klasa = input("Klasa: ")
             if not klasa:
                 break
             self.klasy.append(klasa)
+
+
+
+            grupa=pobierz_grupe(self.klasa)
+            grupa.nauczyciele.append(self)
 
 #    def show(self):
 #    return "Nauczyciel {} uczy przedmiotu {} w klasach {}".format(self.nazwa,self.przedmiot, self.klasy)
@@ -54,6 +83,10 @@ class Wychowawca:
             if not klasa:
                 break
             self.klasy.append(klasa)
+            grupa=pobierz_grupe(self.klasy)   # (self.klasa) było
+            grupa.wychowawca=self   # do ktoreefo self to sie odnosi - z def init ?
+
+
 
 #    def show(self):
 #    return "Wychowawca {} ma klasy {}".format(self.nazwa, self.klasy)
@@ -61,12 +94,7 @@ class Wychowawca:
 #    jeśli phrase to wychowawca: wypisz wszystkich uczniów, których prowadzi wychowawca
 
 
-class Klasasys:
-    def __init__(self):
-        self.numer=""
 
-    def numerklasy(self):
-        self.numer = True
 
 # jeśli phrase to nazwa klasy: program wypisze wychowawcę i uczniów w klasie
 
@@ -86,10 +114,11 @@ while True:
         break
 
     osoba.pobierz()
+#pobierz.grupe()
     print(osoba.__dict__)
+#print(grupy.__dict__)
 
     continue
-
 
 
 if sys.argv[1] in typy:
@@ -99,4 +128,13 @@ if sys.argv[1] in typy:
         # o.show()
         # print(osoba.__dict__)
         # print(osoba)
+
+
+"""  
+    def pobierz_grupe(numer):
+            if numer not in grupy:
+                grupa = Grupa(numer)
+                grupy[numer] = grupa
+            return grupy[numer]
+"""
 
