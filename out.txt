@@ -1,0 +1,31 @@
+python baza2.py 1a <in.txt
+Krzysztof Baczynski
+Jan Brzechwa
+Jan Długosz
+Eliza Orzeszkowa
+
+python baza2.py 2c <in.txt
+Juliusz Slowacki
+Julian Tuwim
+Stanisław Wyspianski
+
+python baza2.py "Krzysztof Baczynski" <in.txt
+Jan Brzechwa
+Jan Dlugosz
+Aleksander Fredro
+Witold Gombrowicz
+Hanna Krall
+Zygmunt Krasinski
+Jan Andrzej Morsztyn
+
+python baza2.py "Henryk Sienkiewicz" <in.txt
+Krzysztof Baczynski
+Jan Brzechwa
+
+python baza2.py "Zygmunt Krasinski" <in.txt
+Język Polski
+Maria Konopnicka
+Fizyka
+Stanisław Lem
+Historia
+Henryk Sienkiewicz
