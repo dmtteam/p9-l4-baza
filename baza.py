@@ -1,17 +1,11 @@
 import sys
-# w in.txt wychowaca i uczen tak samo sie nazywaja
-
-"""jeśli phrase to nazwa klasy: program wypisze wychowawcę i uczniów w klasie
-jeśli phrase to wychowawca: wypisz wszystkich uczniów, których prowadzi wychowawca
-jeśli phrase to nauczyciel: wypisz wychowawców wszystkich klas, z którym ma zajęcia nauczyciel
-jeśli phrase to uczeń: wypisz wszystkie lekcje, które ma uczeń i nauczycieli, którzy je prowadzą"""
 
 imie = ""
 nazwisko = ""
 klasa = ""
 typy = ["uczen", "nauczyciel", "wychowawca", "koniec"]
 grupy = {}
-osoby ={}
+osoby = {}
 
 
 class Grupa:
@@ -22,7 +16,10 @@ class Grupa:
         self.uczniowie = []
 
     def wyswietl(self):
-        print(self.wychowawca.nazwa)
+        if self.wychowawca:
+            print(self.wychowawca.nazwa)
+        else:
+            print(f"Grupa {grupa.numer} nie ma wychowawcy")
         for uczen in self.uczniowie:
             print(uczen.nazwa)
 
@@ -39,77 +36,84 @@ def pobierz_grupe(numer):
 
 def dodaj_osobe(osoba):
     if osoba.nazwa not in osoby:
-        osoby[osoba.nazwa]=[]
+        osoby[osoba.nazwa] = []
     osoby[osoba.nazwa].append(osoba)
 
 
 class Uczen:
     def __init__(self):
-        self.nazwa=""
-        self.klasa=""
-
+        self.nazwa = ""
+        self.klasa = ""
 
     def pobierz(self):
-        self.nazwa = input("Imie nazwisko: ").strip()
-        self.klasa = input("Klasa: ").strip()
-        grupa=pobierz_grupe(self.klasa)
+        self.nazwa = input().strip()
+        self.klasa = input().strip()
+        grupa = pobierz_grupe(self.klasa)
         grupa.uczniowie.append(self)
         dodaj_osobe(self)
 
-    def wyswietl(self):  # nowe, sprawdzic
-        print(self.nazwa.nazwa)
-        print(self.klasa.numer)
+    def wyswietl(self):
+        print(self.nazwa)
+        grupa = pobierz_grupe(self.klasa)
+        for nauczyciel in grupa.nauczyciele:
+            print(nauczyciel.przedmiot)
+            print(nauczyciel.nazwa)
 
 
 class Nauczyciel:
     def __init__(self):
-        self.nazwa=""
-        self.przedmiot=""
-        self.klasy=[]
+        self.nazwa = ""
+        self.przedmiot = ""
+        self.klasy = []
 
     def pobierz(self):
-        self.nazwa = input("Imie nazwisko: ").strip()
-        self.przedmiot = input("Przedmiot: ").strip()
+        self.nazwa = input().strip()
+        self.przedmiot = input().strip()
 
         while True:
-            klasa = input("Klasa: ").strip()
+            klasa = input().strip()
             if not klasa:
                 break
             self.klasy.append(klasa)
-
-            grupa=pobierz_grupe(klasa)
+            grupa = pobierz_grupe(klasa)
             grupa.nauczyciele.append(self)
         dodaj_osobe(self)
 
-#    def show(self):
-#    return "Nauczyciel {} uczy przedmiotu {} w klasach {}".format(self.nazwa,self.przedmiot, self.klasy)
-# jeśli phrase to nauczyciel: wypisz wychowawców wszystkich klas, z którym ma zajęcia nauczyciel
+    def wyswietl(self):
+        print(self.nazwa)
+        for klasa in self.klasy:
+            grupa = pobierz_grupe(klasa)
+            if grupa.wychowawca:
+                print(grupa.wychowawca.nazwa)
+            else:
+                print(f"Grupa {grupa.numer} nie ma wychowawcy")
 
 
 class Wychowawca:
     def __init__(self):
-        self.nazwa=""
-        self.klasy=[]
+        self.nazwa = ""
+        self.klasy = []
 
     def pobierz(self):
-        self.nazwa = input("Imie nazwisko: ").strip()
+        self.nazwa = input().strip()
         while True:
-            klasa = input("Klasa: ").strip()
+            klasa = input().strip()
             if not klasa:
                 break
             self.klasy.append(klasa)
-            grupa=pobierz_grupe(klasa)
-            grupa.wychowawca=self
+            grupa = pobierz_grupe(klasa)
+            grupa.wychowawca = self
         dodaj_osobe(self)
 
+    def wyswietl(self):
+        for klasa in self.klasy:
+            grupa = pobierz_grupe(klasa)
+            for uczen in grupa.uczniowie:
+                print(uczen.nazwa)
 
-#    def show(self):
-#    return "Wychowawca {} ma klasy {}".format(self.nazwa, self.klasy)
-#    jeśli phrase to wychowawca: wypisz wszystkich uczniów, których prowadzi wychowawca
-# jeśli phrase to nazwa klasy: program wypisze wychowawcę i uczniów w klasie
 
 while True:
-    typ = input("Podaj typ: ").strip()
+    typ = input().strip()       # typ = input("Podaj typ: ").strip()
     if typ not in typy:
         print("Zły wybor. Jeszcze raz!")
         continue
@@ -123,12 +127,13 @@ while True:
         break
 
     osoba.pobierz()
-#pobierz.grupe()
-    print(osoba.__dict__)
-#print(grupy.__dict__)
-    continue
 
 # argv
 if sys.argv[1] in grupy:
     grupa = grupy[sys.argv[1]]
     grupa.wyswietl()
+
+if sys.argv[1] in osoby:
+    wybrane_osoby = osoby[sys.argv[1]]
+    for osoba in wybrane_osoby:
+        osoba.wyswietl()
