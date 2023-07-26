@@ -1,6 +1,6 @@
 import sys
 
-imie = ""
+name = ""
 nazwisko = ""
 klasa = ""
 typy = ["uczen", "nauczyciel", "wychowawca", "koniec"]
@@ -9,8 +9,8 @@ osoby = {}
 
 
 class Grupa:
-    def __init__(self, numer):
-        self.numer = numer
+    def __init__(self, number):
+        self.number = number
         self.wychowawca = None
         self.nauczyciele = []
         self.uczniowie = []
@@ -19,19 +19,19 @@ class Grupa:
         if self.wychowawca:
             print(self.wychowawca.nazwa)
         else:
-            print(f"Grupa {grupa.numer} nie ma wychowawcy")
+            print(f"Grupa {grupa.number} nie ma wychowawcy")
         for uczen in self.uczniowie:
             print(uczen.nazwa)
 
-    def numerklasy(self):
-        self.numer = True
+    def numberklasy(self):
+        self.number = True
 
 
-def pobierz_grupe(numer):
-    if numer not in grupy:
-        grupa = Grupa(numer)
-        grupy[numer] = grupa
-    return grupy[numer]
+def pobierz_grupe(number):
+    if number not in grupy:
+        grupa = Grupa(number)
+        grupy[number] = grupa
+    return grupy[number]
 
 
 def dodaj_osobe(osoba):
@@ -86,7 +86,7 @@ class Nauczyciel:
             if grupa.wychowawca:
                 print(grupa.wychowawca.nazwa)
             else:
-                print(f"Grupa {grupa.numer} nie ma wychowawcy")
+                print(f"Grupa {grupa.number} nie ma wychowawcy")
 
 
 class Wychowawca:
