@@ -3,7 +3,7 @@ import sys
 name = ""
 nazwisko = ""
 klasa = ""
-typy = ["uczen", "nauczyciel", "wychowawca", "koniec"]
+typy = ["uczen", "nauczyciel", "wychowawca", "end"]
 grupy = {}
 osoby = {}
 
@@ -123,7 +123,7 @@ while True:
         osoba = Nauczyciel()
     elif typ == "wychowawca":
         osoba = Wychowawca()
-    elif typ == "koniec":
+    elif typ == "end":
         break
 
     osoba.pobierz()
