@@ -34,7 +34,7 @@ def pobierz_grupe(number):
     return grupy[number]
 
 
-def dodaj_osobe(osoba):
+def add_person(osoba):
     if osoba.nazwa not in osoby:
         osoby[osoba.nazwa] = []
     osoby[osoba.nazwa].append(osoba)
@@ -50,7 +50,7 @@ class Uczen:
         self.klasa = input().strip()
         grupa = pobierz_grupe(self.klasa)
         grupa.uczniowie.append(self)
-        dodaj_osobe(self)
+        add_person(self)
 
     def wyswietl(self):
         print(self.nazwa)
@@ -77,7 +77,7 @@ class Nauczyciel:
             self.klasy.append(klasa)
             grupa = pobierz_grupe(klasa)
             grupa.nauczyciele.append(self)
-        dodaj_osobe(self)
+        add_person(self)
 
     def wyswietl(self):
         print(self.nazwa)
@@ -103,7 +103,7 @@ class Wychowawca:
             self.klasy.append(klasa)
             grupa = pobierz_grupe(klasa)
             grupa.wychowawca = self
-        dodaj_osobe(self)
+        add_person(self)
 
     def wyswietl(self):
         for klasa in self.klasy:
@@ -115,7 +115,7 @@ class Wychowawca:
 while True:
     typ = input().strip()       # typ = input("Podaj typ: ").strip()
     if typ not in typy:
-        print("Zły wybor. Jeszcze raz!")
+        print("Bad choice, try again!")
         continue
     elif typ == "uczen":
         osoba = Uczen()
