@@ -15,7 +15,7 @@ class Grupa:
         self.nauczyciele = []
         self.uczniowie = []
 
-    def wyswietl(self):
+    def display(self):
         if self.wychowawca:
             print(self.wychowawca.nazwa)
         else:
@@ -27,7 +27,7 @@ class Grupa:
         self.number = True
 
 
-def pobierz_grupe(number):
+def get_group(number):
     if number not in grupy:
         grupa = Grupa(number)
         grupy[number] = grupa
@@ -48,13 +48,13 @@ class Uczen:
     def pobierz(self):
         self.nazwa = input().strip()
         self.klasa = input().strip()
-        grupa = pobierz_grupe(self.klasa)
+        grupa = get_group(self.klasa)
         grupa.uczniowie.append(self)
         add_person(self)
 
-    def wyswietl(self):
+    def display(self):
         print(self.nazwa)
-        grupa = pobierz_grupe(self.klasa)
+        grupa = get_group(self.klasa)
         for nauczyciel in grupa.nauczyciele:
             print(nauczyciel.przedmiot)
             print(nauczyciel.nazwa)
@@ -75,14 +75,14 @@ class Nauczyciel:
             if not klasa:
                 break
             self.klasy.append(klasa)
-            grupa = pobierz_grupe(klasa)
+            grupa = get_group(klasa)
             grupa.nauczyciele.append(self)
         add_person(self)
 
-    def wyswietl(self):
+    def display(self):
         print(self.nazwa)
         for klasa in self.klasy:
-            grupa = pobierz_grupe(klasa)
+            grupa = get_group(klasa)
             if grupa.wychowawca:
                 print(grupa.wychowawca.nazwa)
             else:
@@ -101,13 +101,13 @@ class Wychowawca:
             if not klasa:
                 break
             self.klasy.append(klasa)
-            grupa = pobierz_grupe(klasa)
+            grupa = get_group(klasa)
             grupa.wychowawca = self
         add_person(self)
 
-    def wyswietl(self):
+    def display(self):
         for klasa in self.klasy:
-            grupa = pobierz_grupe(klasa)
+            grupa = get_group(klasa)
             for uczen in grupa.uczniowie:
                 print(uczen.nazwa)
 
@@ -131,9 +131,9 @@ while True:
 # argv
 if sys.argv[1] in grupy:
     grupa = grupy[sys.argv[1]]
-    grupa.wyswietl()
+    grupa.display()
 
 if sys.argv[1] in osoby:
     wybrane_osoby = osoby[sys.argv[1]]
     for osoba in wybrane_osoby:
-        osoba.wyswietl()
+        osoba.display()
