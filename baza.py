@@ -134,6 +134,6 @@ if sys.argv[1] in grupy:
     grupa.display()
 
 if sys.argv[1] in osoby:
-    wybrane_osoby = osoby[sys.argv[1]]
-    for osoba in wybrane_osoby:
+    selected_people = osoby[sys.argv[1]]
+    for osoba in selected_people:
         osoba.display()
