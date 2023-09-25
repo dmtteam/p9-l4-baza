@@ -56,19 +56,19 @@ class Uczen:
         print(self.nazwa)
         grupa = get_group(self.klasa)
         for nauczyciel in grupa.nauczyciele:
-            print(nauczyciel.przedmiot)
+            print(nauczyciel.subject)
             print(nauczyciel.nazwa)
 
 
 class Nauczyciel:
     def __init__(self):
         self.nazwa = ""
-        self.przedmiot = ""
+        self.subject = ""
         self.klasy = []
 
     def pobierz(self):
         self.nazwa = input().strip()
-        self.przedmiot = input().strip()
+        self.subject = input().strip()
 
         while True:
             klasa = input().strip()
