@@ -19,7 +19,7 @@ class Grupa:
         if self.wychowawca:
             print(self.wychowawca.nazwa)
         else:
-            print(f"Grupa {grupa.number} nie ma wychowawcy")
+            print(f"The group  {grupa.number} does not have a supervising teacher")
         for uczen in self.uczniowie:
             print(uczen.nazwa)
 
@@ -86,7 +86,7 @@ class Nauczyciel:
             if grupa.wychowawca:
                 print(grupa.wychowawca.nazwa)
             else:
-                print(f"Grupa {grupa.number} nie ma wychowawcy")
+                print(f"The group {grupa.number} does not have a supervising teacher")
 
 
 class Wychowawca:
