@@ -34,10 +34,10 @@ def get_group(number):
     return grupy[number]
 
 
-def add_person(osoba):
-    if osoba.nazwa not in osoby:
-        osoby[osoba.nazwa] = []
-    osoby[osoba.nazwa].append(osoba)
+def add_person(person):
+    if person.nazwa not in osoby:
+        osoby[person.nazwa] = []
+    osoby[person.nazwa].append(person)
 
 
 class Uczen:
@@ -118,15 +118,15 @@ while True:
         print("Bad choice, try again!")
         continue
     elif typ == "uczen":
-        osoba = Uczen()
+        person = Uczen()
     elif typ == "nauczyciel":
-        osoba = Nauczyciel()
+        person = Nauczyciel()
     elif typ == "wychowawca":
-        osoba = Wychowawca()
+        person = Wychowawca()
     elif typ == "end":
         break
 
-    osoba.pobierz()
+    person.pobierz()
 
 # argv
 if sys.argv[1] in grupy:
@@ -135,5 +135,5 @@ if sys.argv[1] in grupy:
 
 if sys.argv[1] in osoby:
     selected_people = osoby[sys.argv[1]]
-    for osoba in selected_people:
-        osoba.display()
+    for person in selected_people:
+        person.display()
