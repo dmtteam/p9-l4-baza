@@ -3,7 +3,7 @@ import sys
 name = ""
 nazwisko = ""
 klasa = ""
-typy = ["uczen", "nauczyciel", "wychowawca", "end"]
+typy = ["student", "nauczyciel", "wychowawca", "end"]
 grupy = {}
 osoby = {}
 
@@ -20,8 +20,8 @@ class Grupa:
             print(self.wychowawca.nazwa)
         else:
             print(f"The group  {grupa.number} does not have a supervising teacher")
-        for uczen in self.uczniowie:
-            print(uczen.nazwa)
+        for student in self.uczniowie:
+            print(student.nazwa)
 
     def numberklasy(self):
         self.number = True
@@ -108,8 +108,8 @@ class Wychowawca:
     def display(self):
         for klasa in self.klasy:
             grupa = get_group(klasa)
-            for uczen in grupa.uczniowie:
-                print(uczen.nazwa)
+            for student in grupa.uczniowie:
+                print(student.nazwa)
 
 
 while True:
@@ -117,7 +117,7 @@ while True:
     if typ not in typy:
         print("Bad choice, try again!")
         continue
-    elif typ == "uczen":
+    elif typ == "student":
         person = Uczen()
     elif typ == "nauczyciel":
         person = Nauczyciel()
