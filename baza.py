@@ -1,7 +1,7 @@
 import sys
 
 name = ""
-nazwisko = ""
+surname = ""
 klasa = ""
 typy = ["student", "nauczyciel", "wychowawca", "end"]
 grupy = {}
