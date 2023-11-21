@@ -12,7 +12,7 @@ class Grupa:
     def __init__(self, number):
         self.number = number
         self.wychowawca = None
-        self.nauczyciele = []
+        self.teachers = []
         self.uczniowie = []
 
     def display(self):
@@ -55,7 +55,7 @@ class Uczen:
     def display(self):
         print(self.nazwa)
         grupa = get_group(self.klasa)
-        for nauczyciel in grupa.nauczyciele:
+        for nauczyciel in grupa.teachers:
             print(nauczyciel.subject)
             print(nauczyciel.nazwa)
 
@@ -76,7 +76,7 @@ class Nauczyciel:
                 break
             self.klasy.append(klasa)
             grupa = get_group(klasa)
-            grupa.nauczyciele.append(self)
+            grupa.teachers.append(self)
         add_person(self)
 
     def display(self):
