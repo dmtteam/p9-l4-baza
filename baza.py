@@ -5,7 +5,7 @@ surname = ""
 klasa = ""
 typy = ["student", "nauczyciel", "wychowawca", "end"]
 grupy = {}
-osoby = {}
+persons = {}
 
 
 class Grupa:
@@ -35,9 +35,9 @@ def get_group(number):
 
 
 def add_person(person):
-    if person.nazwa not in osoby:
-        osoby[person.nazwa] = []
-    osoby[person.nazwa].append(person)
+    if person.nazwa not in persons:
+        persons[person.nazwa] = []
+    persons[person.nazwa].append(person)
 
 
 class Uczen:
@@ -133,7 +133,7 @@ if sys.argv[1] in grupy:
     grupa = grupy[sys.argv[1]]
     grupa.display()
 
-if sys.argv[1] in osoby:
-    selected_people = osoby[sys.argv[1]]
+if sys.argv[1] in persons:
+    selected_people = persons[sys.argv[1]]
     for person in selected_people:
         person.display()
