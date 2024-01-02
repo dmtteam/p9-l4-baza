@@ -3,7 +3,7 @@ import sys
 name = ""
 surname = ""
 klasa = ""
-typy = ["student", "nauczyciel", "wychowawca", "end"]
+typy = ["student", "teacher", "wychowawca", "end"]
 grupy = {}
 persons = {}
 
@@ -55,9 +55,9 @@ class Uczen:
     def display(self):
         print(self.nazwa)
         grupa = get_group(self.klasa)
-        for nauczyciel in grupa.teachers:
-            print(nauczyciel.subject)
-            print(nauczyciel.nazwa)
+        for teacher in grupa.teachers:
+            print(teacher.subject)
+            print(teacher.nazwa)
 
 
 class Nauczyciel:
@@ -119,7 +119,7 @@ while True:
         continue
     elif typ == "student":
         person = Uczen()
-    elif typ == "nauczyciel":
+    elif typ == "teacher":
         person = Nauczyciel()
     elif typ == "wychowawca":
         person = Wychowawca()
