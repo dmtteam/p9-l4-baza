@@ -3,7 +3,7 @@ import sys
 name = ""
 surname = ""
 klasa = ""
-typy = ["student", "teacher", "wychowawca", "end"]
+typy = ["student", "teacher", "supervisor", "end"]
 grupy = {}
 persons = {}
 
@@ -11,13 +11,13 @@ persons = {}
 class Grupa:
     def __init__(self, number):
         self.number = number
-        self.wychowawca = None
+        self.supervisor = None
         self.teachers = []
         self.uczniowie = []
 
     def display(self):
-        if self.wychowawca:
-            print(self.wychowawca.nazwa)
+        if self.supervisor:
+            print(self.supervisor.nazwa)
         else:
             print(f"The group  {grupa.number} does not have a supervising teacher")
         for student in self.uczniowie:
@@ -83,13 +83,13 @@ class Nauczyciel:
         print(self.nazwa)
         for klasa in self.klasy:
             grupa = get_group(klasa)
-            if grupa.wychowawca:
-                print(grupa.wychowawca.nazwa)
+            if grupa.supervisor:
+                print(grupa.supervisor.nazwa)
             else:
                 print(f"The group {grupa.number} does not have a supervising teacher")
 
 
-class Wychowawca:
+class Supervisor:
     def __init__(self):
         self.nazwa = ""
         self.klasy = []
@@ -102,7 +102,7 @@ class Wychowawca:
                 break
             self.klasy.append(klasa)
             grupa = get_group(klasa)
-            grupa.wychowawca = self
+            grupa.supervisor = self
         add_person(self)
 
     def display(self):
@@ -121,8 +121,8 @@ while True:
         person = Uczen()
     elif typ == "teacher":
         person = Nauczyciel()
-    elif typ == "wychowawca":
-        person = Wychowawca()
+    elif typ == "supervisor":
+        person = Supervisor()
     elif typ == "end":
         break
 
