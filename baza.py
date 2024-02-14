@@ -2,7 +2,7 @@ import sys
 
 name = ""
 surname = ""
-klasa = ""
+classroom = ""
 typy = ["student", "teacher", "supervisor", "end"]
 grupy = {}
 persons = {}
@@ -43,18 +43,18 @@ def add_person(person):
 class Uczen:
     def __init__(self):
         self.nazwa = ""
-        self.klasa = ""
+        self.classroom = ""
 
     def pobierz(self):
         self.nazwa = input().strip()
-        self.klasa = input().strip()
-        grupa = get_group(self.klasa)
+        self.classroom = input().strip()
+        grupa = get_group(self.classroom)
         grupa.uczniowie.append(self)
         add_person(self)
 
     def display(self):
         print(self.nazwa)
-        grupa = get_group(self.klasa)
+        grupa = get_group(self.classroom)
         for teacher in grupa.teachers:
             print(teacher.subject)
             print(teacher.nazwa)
@@ -71,18 +71,18 @@ class Nauczyciel:
         self.subject = input().strip()
 
         while True:
-            klasa = input().strip()
-            if not klasa:
+            classroom = input().strip()
+            if not classroom:
                 break
-            self.klasy.append(klasa)
-            grupa = get_group(klasa)
+            self.klasy.append(classroom)
+            grupa = get_group(classroom)
             grupa.teachers.append(self)
         add_person(self)
 
     def display(self):
         print(self.nazwa)
-        for klasa in self.klasy:
-            grupa = get_group(klasa)
+        for classroom in self.klasy:
+            grupa = get_group(classroom)
             if grupa.supervisor:
                 print(grupa.supervisor.nazwa)
             else:
@@ -97,17 +97,17 @@ class Supervisor:
     def pobierz(self):
         self.nazwa = input().strip()
         while True:
-            klasa = input().strip()
-            if not klasa:
+            classroom = input().strip()
+            if not classroom:
                 break
-            self.klasy.append(klasa)
-            grupa = get_group(klasa)
+            self.klasy.append(classroom)
+            grupa = get_group(classroom)
             grupa.supervisor = self
         add_person(self)
 
     def display(self):
-        for klasa in self.klasy:
-            grupa = get_group(klasa)
+        for classroom in self.klasy:
+            grupa = get_group(classroom)
             for student in grupa.uczniowie:
                 print(student.nazwa)
 
