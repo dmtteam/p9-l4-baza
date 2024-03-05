@@ -40,7 +40,7 @@ def add_person(person):
     persons[person.nazwa].append(person)
 
 
-class Uczen:
+class Student:
     def __init__(self):
         self.nazwa = ""
         self.classroom = ""
@@ -115,10 +115,10 @@ class Supervisor:
 while True:
     typ = input().strip()       # typ = input("Podaj typ: ").strip()
     if typ not in typy:
-        print("Bad choice, try again!")
+        print("Bad choice, please try again!")
         continue
     elif typ == "student":
-        person = Uczen()
+        person = Student()
     elif typ == "teacher":
         person = Nauczyciel()
     elif typ == "supervisor":
