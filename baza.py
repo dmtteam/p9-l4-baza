@@ -60,7 +60,7 @@ class Student:
             print(teacher.nazwa)
 
 
-class Nauczyciel:
+class Teacher:
     def __init__(self):
         self.nazwa = ""
         self.subject = ""
@@ -120,7 +120,7 @@ while True:
     elif typ == "student":
         person = Student()
     elif typ == "teacher":
-        person = Nauczyciel()
+        person = Teacher()
     elif typ == "supervisor":
         person = Supervisor()
     elif typ == "end":
