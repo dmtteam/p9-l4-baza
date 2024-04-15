@@ -13,14 +13,14 @@ class Grupa:
         self.number = number
         self.supervisor = None
         self.teachers = []
-        self.uczniowie = []
+        self.students = []
 
     def display(self):
         if self.supervisor:
             print(self.supervisor.nazwa)
         else:
             print(f"The group  {grupa.number} does not have a supervising teacher")
-        for student in self.uczniowie:
+        for student in self.students:
             print(student.nazwa)
 
     def numberklasy(self):
@@ -49,7 +49,7 @@ class Student:
         self.nazwa = input().strip()
         self.classroom = input().strip()
         grupa = get_group(self.classroom)
-        grupa.uczniowie.append(self)
+        grupa.students.append(self)
         add_person(self)
 
     def display(self):
@@ -108,7 +108,7 @@ class Supervisor:
     def display(self):
         for classroom in self.klasy:
             grupa = get_group(classroom)
-            for student in grupa.uczniowie:
+            for student in grupa.students:
                 print(student.nazwa)
 
 
