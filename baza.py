@@ -17,11 +17,11 @@ class Grupa:
 
     def display(self):
         if self.supervisor:
-            print(self.supervisor.nazwa)
+            print(self.supervisor.name)
         else:
             print(f"The group  {grupa.number} does not have a supervising teacher")
         for student in self.students:
-            print(student.nazwa)
+            print(student.name)
 
     def numberklasy(self):
         self.number = True
@@ -35,39 +35,39 @@ def get_group(number):
 
 
 def add_person(person):
-    if person.nazwa not in persons:
-        persons[person.nazwa] = []
-    persons[person.nazwa].append(person)
+    if person.name not in persons:
+        persons[person.name] = []
+    persons[person.name].append(person)
 
 
 class Student:
     def __init__(self):
-        self.nazwa = ""
+        self.name = ""
         self.classroom = ""
 
     def pobierz(self):
-        self.nazwa = input().strip()
+        self.name = input().strip()
         self.classroom = input().strip()
         grupa = get_group(self.classroom)
         grupa.students.append(self)
         add_person(self)
 
     def display(self):
-        print(self.nazwa)
+        print(self.name)
         grupa = get_group(self.classroom)
         for teacher in grupa.teachers:
             print(teacher.subject)
-            print(teacher.nazwa)
+            print(teacher.name)
 
 
 class Teacher:
     def __init__(self):
-        self.nazwa = ""
+        self.name = ""
         self.subject = ""
         self.klasy = []
 
     def pobierz(self):
-        self.nazwa = input().strip()
+        self.name = input().strip()
         self.subject = input().strip()
 
         while True:
@@ -80,22 +80,22 @@ class Teacher:
         add_person(self)
 
     def display(self):
-        print(self.nazwa)
+        print(self.name)
         for classroom in self.klasy:
             grupa = get_group(classroom)
             if grupa.supervisor:
-                print(grupa.supervisor.nazwa)
+                print(grupa.supervisor.name)
             else:
                 print(f"The group {grupa.number} does not have a supervising teacher")
 
 
 class Supervisor:
     def __init__(self):
-        self.nazwa = ""
+        self.name = ""
         self.klasy = []
 
     def pobierz(self):
-        self.nazwa = input().strip()
+        self.name = input().strip()
         while True:
             classroom = input().strip()
             if not classroom:
@@ -109,7 +109,7 @@ class Supervisor:
         for classroom in self.klasy:
             grupa = get_group(classroom)
             for student in grupa.students:
-                print(student.nazwa)
+                print(student.name)
 
 
 while True:
