@@ -3,7 +3,7 @@ import sys
 name = ""
 surname = ""
 classroom = ""
-typy = ["student", "teacher", "supervisor", "end"]
+types = ["student", "teacher", "supervisor", "end"]
 grupy = {}
 persons = {}
 
@@ -113,17 +113,17 @@ class Supervisor:
 
 
 while True:
-    typ = input().strip()       # typ = input("Podaj typ: ").strip()
-    if typ not in typy:
+    type = input().strip()       # type = input("Enter type: ").strip()
+    if type not in types:
         print("Bad choice, please try again!")
         continue
-    elif typ == "student":
+    elif type == "student":
         person = Student()
-    elif typ == "teacher":
+    elif type == "teacher":
         person = Teacher()
-    elif typ == "supervisor":
+    elif type == "supervisor":
         person = Supervisor()
-    elif typ == "end":
+    elif type == "end":
         break
 
     person.pobierz()
