@@ -4,7 +4,7 @@ name = ""
 surname = ""
 classroom = ""
 types = ["student", "teacher", "supervisor", "end"]
-grupy = {}
+groups = {}
 persons = {}
 
 
@@ -28,10 +28,10 @@ class Grupa:
 
 
 def get_group(number):
-    if number not in grupy:
+    if number not in groups:
         grupa = Grupa(number)
-        grupy[number] = grupa
-    return grupy[number]
+        groups[number] = grupa
+    return groups[number]
 
 
 def add_person(person):
@@ -129,8 +129,8 @@ while True:
     person.pobierz()
 
 # argv
-if sys.argv[1] in grupy:
-    grupa = grupy[sys.argv[1]]
+if sys.argv[1] in groups:
+    grupa = groups[sys.argv[1]]
     grupa.display()
 
 if sys.argv[1] in persons:
