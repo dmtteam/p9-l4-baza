@@ -45,7 +45,7 @@ class Student:
         self.name = ""
         self.classroom = ""
 
-    def pobierz(self):
+    def download(self):
         self.name = input().strip()
         self.classroom = input().strip()
         grupa = get_group(self.classroom)
@@ -66,7 +66,7 @@ class Teacher:
         self.subject = ""
         self.klasy = []
 
-    def pobierz(self):
+    def download(self):
         self.name = input().strip()
         self.subject = input().strip()
 
@@ -94,7 +94,7 @@ class Supervisor:
         self.name = ""
         self.klasy = []
 
-    def pobierz(self):
+    def download(self):
         self.name = input().strip()
         while True:
             classroom = input().strip()
@@ -126,7 +126,7 @@ while True:
     elif type == "end":
         break
 
-    person.pobierz()
+    person.download()
 
 # argv
 if sys.argv[1] in groups:
