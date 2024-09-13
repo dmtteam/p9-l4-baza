@@ -8,7 +8,7 @@ groups = {}
 persons = {}
 
 
-class Grupa:
+class Group:
     def __init__(self, number):
         self.number = number
         self.supervisor = None
@@ -29,7 +29,7 @@ class Grupa:
 
 def get_group(number):
     if number not in groups:
-        grupa = Grupa(number)
+        grupa = Group(number)
         groups[number] = grupa
     return groups[number]
 
