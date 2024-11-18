@@ -23,7 +23,7 @@ class Group:
         for student in self.students:
             print(student.name)
 
-    def numberklasy(self):
+    def numberclass(self):
         self.number = True
 
 
@@ -115,7 +115,7 @@ class Supervisor:
 while True:
     type = input().strip()       # type = input("Enter type: ").strip()
     if type not in types:
-        print("Bad choice, please try again!")
+        print("Bad choice. Please try again!")
         continue
     elif type == "student":
         person = Student()
