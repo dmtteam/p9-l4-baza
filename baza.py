@@ -115,7 +115,7 @@ class Supervisor:
 while True:
     type = input().strip()       # type = input("Enter type: ").strip()
     if type not in types:
-        print("Bad choice. Please try again!")
+        print("Bad choice. Please try again later!")
         continue
     elif type == "student":
         person = Student()
